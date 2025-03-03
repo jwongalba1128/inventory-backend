@@ -41,8 +41,7 @@ public class CategoryServiceImpl implements ICategoryService{
 	@Transactional(readOnly = true)
 	public ResponseEntity<CategoryResponseRest> searchById(Long id) {
 		CategoryResponseRest response = new CategoryResponseRest();
-		List<Category> list = new ArrayList<>();
-		
+		List<Category> list = new ArrayList<>();		
 		try {
 			Optional<Category> category = categoryDao.findById(id);
 			if (category.isPresent()) {
@@ -58,10 +57,8 @@ public class CategoryServiceImpl implements ICategoryService{
 			response.setMetadata("Respuesta no ok", "-1", "categoria no encontrada");
 			e.getStackTrace();
 			return new ResponseEntity<CategoryResponseRest>(response, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-		
+		}		
 		return new ResponseEntity<CategoryResponseRest>(response, HttpStatus.OK);
-
 	}
 	
 
